@@ -19,15 +19,16 @@ export default function JobListPage() {
   const [maxSalary, setMaxSalary] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
+  const fetchJobs = async () => {
+    const { data, error } = await supabase.from("jobs").select("*");
+    if (error) {
+      console.error("求人取得エラー:", error.message);
+    } else {
+      setJobs(data as Job[]);
+    }
+  };
+
   useEffect(() => {
-    const fetchJobs = async () => {
-      const { data, error } = await supabase.from("jobs").select("*");
-      if (error) {
-        console.error("求人取得エラー:", error.message);
-      } else {
-        setJobs(data as Job[]);
-      }
-    };
     fetchJobs();
   }, []);
 
@@ -57,7 +58,7 @@ export default function JobListPage() {
     if (error) {
       console.error("削除エラー:", error.message);
     } else {
-      setJobs((prevJobs) => prevJobs.filter((job) => job.is_favorite));
+      await fetchJobs(); // 削除後に再取得
     }
   };
 
