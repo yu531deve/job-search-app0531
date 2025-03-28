@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 課題 ③ 求人検索アプリ（Next.js + Supabase 版）
 
-## Getting Started
+## 概要
 
-First, run the development server:
+本アプリは Next.js と Supabase を使用し、求人情報の一覧表示・詳細表示・投稿・削除・お気に入り機能を実装したものです。課題 ②（React + Rails API）と同じ UI・機能を再現しています。
+
+---
+
+## 使用技術
+
+- Next.js (App Router)
+- React (Client Component & Server Component)
+- Supabase (DB + API)
+- Tailwind CSS
+
+---
+
+## 実装機能
+
+- 求人一覧取得（Supabase 連携）
+- 求人詳細表示
+- 求人投稿機能
+- カテゴリ・年収フィルタ機能
+- お気に入り登録機能
+- お気に入り以外の削除機能
+- 投稿後、自動的に一覧ページへ遷移
+- 課題 ② と同じ UI デザイン
+
+---
+
+## 動作確認方法
+
+1. `.env` ファイルに以下を設定
+
+NEXT_PUBLIC_SUPABASE_URL=xxxxxxxxxxxxxxxxxxx NEXT_PUBLIC_SUPABASE_ANON_KEY=xxxxxxxxxxxxxxxxxxx
+
+2. ローカルサーバー起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+3. ブラウザで http://localhost:3000 にアクセス
+
+その他
+Supabaseの Row Level Security (RLS) は無効化済み
+
+is_favorite カラムを追加済み
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
