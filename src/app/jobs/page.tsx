@@ -1,6 +1,7 @@
-import { supabase } from "../lib/supabaseClient";
+import Link from "next/link";
+import { supabase } from "../../lib/supabaseClient";
 
-export default async function HomePage() {
+export default async function JobListPage() {
   const { data, error } = await supabase.from("jobs").select("*");
 
   if (error) {
@@ -14,16 +15,16 @@ export default async function HomePage() {
       <ul className="space-y-4">
         {data?.map((job) => (
           <li key={job.id} className="p-4 border rounded">
-            <h2 className="text-xl font-semibold">{job.title}</h2>
+            <Link href={`/jobs/${job.id}`}>
+              <h2 className="text-xl font-semibold text-blue-600 hover:underline">
+                {job.title}
+              </h2>
+            </Link>
             <p>カテゴリ: {job.category}</p>
             <p>年収: {job.salary}万円</p>
-            <p>{job.description}</p>
           </li>
         ))}
       </ul>
     </div>
   );
 }
-
-console.log("URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-console.log("KEY:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
