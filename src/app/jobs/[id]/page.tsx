@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { supabase } from "../../../lib/supabaseClient";
 
-export default async function JobDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+const JobDetailPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
 
   const { data, error } = await supabase
@@ -49,4 +45,6 @@ export default async function JobDetailPage({
       </Link>
     </div>
   );
-}
+};
+
+export default JobDetailPage;
