@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { supabase } from "../../../lib/supabaseClient";
 
-type JobDetailPageProps = {
+type Props = {
   params: {
     id: string;
   };
 };
 
-export default async function JobDetailPage({ params }: JobDetailPageProps) {
+export default async function JobDetailPage({ params }: Props) {
   const { id } = params;
 
   const { data, error } = await supabase
